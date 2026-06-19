@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Love Calculator ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff416c,#ff4b2b);
+    padding:20px;
+}
+
+.container{
+    background:#fff;
+    width:100%;
+    max-width:500px;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#ff416c;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#ff416c;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.loading{
+    display:none;
+    margin-top:20px;
+    color:#666;
+}
+
+.result{
+    display:none;
+    margin-top:25px;
+    padding:20px;
+    border-radius:15px;
+}
+
+.good{
+    background:#e8fff0;
+    border:2px solid #00c853;
+}
+
+.bad{
+    background:#fff0f0;
+    border:2px solid #ff1744;
+}
+
+.percent{
+    font-size:50px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.stats{
+    text-align:left;
+    margin-top:15px;
+}
+
+.stats p{
+    margin:6px 0;
+}
+
+.footer{
+    margin-top:15px;
+    font-size:12px;
+    color:#999;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>❤️ AI Love Calculator ❤️</h1>
+
+    <input type="text" id="boyName" placeholder="Enter Boy Name">
+
+    <input type="text" id="girlName" placeholder="Enter Girl Name">
+
+    <button onclick="checkLove()">Check Compatibility</button>
+
+    <div class="loading" id="loading">
+        🤖 AI Analyzing Relationship...
+        <br><br>
+        Checking Messages...
+        <br>
+        Checking Future Compatibility...
+        <br>
+        Calculating Soul Connection...
+    </div>
+
+    <div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+function checkLove(){
+
+    let boy = document.getElementById("boyName").value.trim().toLowerCase();
+    let girl = document.getElementById("girlName").value.trim().toLowerCase();
+
+    if(!boy || !girl){
+        alert("Please enter both names.");
+        return;
+    }
+
+    document.getElementById("result").style.display="none";
+    document.getElementById("loading").style.display="block";
+
+    setTimeout(()=>{
+
+        const boys = ["raj","rajkumar"];
+        const girls = ["gayu","gayathri"];
+
+        let specialPair =
+            boys.includes(boy) &&
+            girls.includes(girl);
+
+        let percent;
+        let html;
+
+        if(specialPair){
+
+            percent = 99;
+
+            const soulmateMessages = [
+                "💖 Exclusive Soulmate Pair Detected",
+                "💍 Wedding Probability Extremely High",
+                "🌹 Rare Relationship Match Found",
+                "✨ Lifetime Compatibility Confirmed",
+                "❤️ Perfect Couple Identified"
+            ];
+
+            const msg =
+                soulmateMessages[
+                    Math.floor(Math.random()*soulmateMessages.length)
+                ];
+
+            html = `
+                <div class="percent" style="color:#00c853">
+                    ${percent}% ❤️
+                </div>
+
+                <h3>${msg}</h3>
+
+                <div class="stats">
+                    <p>💞 Compatibility : 99%</p>
+                    <p>🤝 Trust Level : 98%</p>
+                    <p>💬 Communication : 97%</p>
+                    <p>🏡 Family Approval : 95%</p>
+                    <p>💍 Marriage Chance : 99%</p>
+                    <p>😊 Happiness Index : 100%</p>
+                    <p>🌟 Unique Pair Score : 10/10</p>
+                </div>
+
+                <br>
+
+                <strong>
+                AI detected a very rare soulmate connection.
+                This pair appears only once in 10 million matches.
+                </strong>
+            `;
+
+            document.getElementById("result").className =
+                "result good";
+
+        }else{
+
+            percent = Math.floor(Math.random()*20)+1;
+
+            const badMessages = [
+                "💔 Better As Friends",
+                "😅 Relationship Not Recommended",
+                "⚠️ Emotional Connection Weak",
+                "🙄 Different Life Goals",
+                "📉 Poor Compatibility",
+                "🥲 High Breakup Risk",
+                "🚫 Future Not Stable"
+            ];
+
+            const msg =
+                badMessages[
+                    Math.floor(Math.random()*badMessages.length)
+                ];
+
+            html = `
+                <div class="percent" style="color:#ff1744">
+                    ${percent}% 💔
+                </div>
+
+                <h3>${msg}</h3>
+
+                <div class="stats">
+                    <p>💞 Compatibility : ${Math.max(percent-2,1)}%</p>
+                    <p>🤝 Trust Level : ${Math.max(percent-5,1)}%</p>
+                    <p>💬 Communication : ${Math.max(percent-4,1)}%</p>
+                    <p>🏡 Family Approval : ${Math.max(percent-8,1)}%</p>
+                    <p>💍 Marriage Chance : ${Math.max(percent-10,1)}%</p>
+                    <p>😊 Happiness Index : ${Math.max(percent-3,1)}%</p>
+                    <p>⚠️ Conflict Risk : 95%</p>
+                </div>
+
+                <br>
+
+                <strong>
+                AI recommends staying friends.
+                Long term relationship success appears unlikely.
+                </strong>
+            `;
+
+            document.getElementById("result").className =
+                "result bad";
+        }
+
+        document.getElementById("loading").style.display="none";
+
+        document.getElementById("result").innerHTML = html;
+        document.getElementById("result").style.display="block";
+
+    },2500);
+}
+</script>
+
+</body>
+</html>
